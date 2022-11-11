@@ -1,4 +1,4 @@
-FROM centos
+FROM centos:9
 
 MAINTAINER nagudivyas@gmail.com
 
