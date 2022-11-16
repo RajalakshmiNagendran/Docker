@@ -1,0 +1,32 @@
+plugins {
+    id 'war'
+    id 'org.gretty' version '2.2.0'
+    id "org.sonarqube" version "3.4.0.2513"
+}
+
+description = 'Example of SonarQube Scanner for Gradle Usage'
+version = '1.0'
+
+sonarqube {
+    properties {
+        property 'sonar.projectName', 'Example of SonarQube Scanner for Gradle Usage'
+    }
+}
+
+
+repositories {
+    jcenter() 
+}
+
+dependencies {
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    testCompile 'junit:junit:4.12'
+}
+
+sonarqube {
+    properties {
+        property 'sonar.host.url', 'http://localhost:9000'
+	property 'sonar.login', '8737e98540883e73213c7e7d9323b0aa439b723f'
+	property "sonar.sources", "src"
+    }
+}
