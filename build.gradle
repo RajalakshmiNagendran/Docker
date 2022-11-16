@@ -23,10 +23,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-sonarqube {
+/*sonarqube {
     properties {
         property 'sonar.host.url', 'http://localhost:9000'
-	property 'sonar.login', '8737e98540883e73213c7e7d9323b0aa439b723f'
-	property "sonar.sources", "src"
+	//property 'sonar.login', '8737e98540883e73213c7e7d9323b0aa439b723f'
+	//property "sonar.sources", "src"
     }
-}
+}*/
