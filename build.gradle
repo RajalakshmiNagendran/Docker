@@ -1,7 +1,7 @@
 plugins {
     id 'war'
     id 'org.gretty' version '2.2.0'
-    id "org.sonarqube" version "3.4.0.2513"
+    id "org.sonarqube"
 }
 
 description = 'Example of SonarQube Scanner for Gradle Usage'
@@ -21,6 +21,7 @@ repositories {
 dependencies {
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     testCompile 'junit:junit:4.12'
+    classpath "org.sonarsource.scanner.gradle: sonarqube-gradle-plugin:2.5"
 }
 
 sonarqube {
