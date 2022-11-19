@@ -24,7 +24,9 @@ pipeline{
 			}
 		}
         stage('Docker build and Push') {
-            sh "docker build -t saravak/tomcat8:${version} ."
+            steps{
+                sh "docker build -t saravak/tomcat8:${version} ."
+            }    
         }
 	}
 }	
