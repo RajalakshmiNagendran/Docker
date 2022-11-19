@@ -1,20 +1,31 @@
-pipeline {
-    agent any
-    stages {
-        stage ('sonar quality check') {
-            agent {
-                docker {
-                    image 'openjdk:11'
-                }
-            }
+pipeline{
+    agent {
+        docker {
+            image 'gradle:6.7-jdk11'
+        }
+    }	
+    stages{
+        stage('Checkout SCM') {
             steps {
-                script {
-                    withSonarQubeEnv(credentialsId: 'sonartoken') {
-                        sh "chmod +x gradlew"
-                        sh "./gradlew sonarqube"
-                    }    
-                }
+                git url: 'https://github.com/RajalakshmiNagendran/Docker.git'
             }
         }
-    }
-}
+        stage("sonar quality check") {
+            steps{
+                script{
+                    withSonarQubeEnv(installationName: 'sonarqubeserver') {
+                            sh './gradlew sonarqube'
+                    }
+                    sleep(30)
+                    timeout(time: 2, unit: 'MINUTES') {
+                        waitForQualityGate abortPipeline: true
+                    }
+				}
+			}
+		}
+        stage('Docker build and Push') {
+            sh "docker build -t saravak/tomcat8:${version} ."
+        }
+	}
+}	
+		
